@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --color-primario: #000000;
+    --color-secundario: #F6F6F6;
+    --color-terciario: #22D4FD;
+    --color-cafe: #272727;
+    --fuente-montserrat: 'Montserrat', sans serif;
+    --fuente-krona: 'Krona One', sans serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: var(--color-primario);
+    color: var(--color-secundario);
+    box-sizing: border-box;
+}
+
+.header {
+    padding: 2% 0% 0% 15%;
+}
+
+.header__menu {
+    display: flex;
+    gap: 80px;
+}
+
+.header__menu__link {
+    font-family: var(--fuente-montserrat);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-terciario);
+}
+
+strong{
+    color: var(--color-terciario);
+}
+
+a{
+    color:brown;
+}
+
+.titulo-destaque {
+    color: var(--color-terciario);
+}
+
+.presentacion {
+    display: flex;
+    align-items: center;
+    padding: 8% 10%;
+    justify-content: space-between;
+    gap: 82px;
+}
+
+.presentacion__contenido {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.presentacion__contenido__titulo {
+    font-size: 2.25rem;
+    font-family: var(--fuente-krona);
+}
+
+.presentacion__contenido__texto {
+    font-size: 1.5rem;
+    font-family: var(--fuente-montserrat);
+}
+
+.presentacion__contenido__texto2 {
+    display: grid;
+    place-items: center;  /* Centrado tanto horizontal como vertical */  
+    font-size: 1.5rem;
+    font-family: var(--fuente-montserrat);
+}
+
+.presentacion__enlaces {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+.presentacion__enlaces__subtitulos {
+    font-family: var(--fuente-krona);
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+
+.presentacion__enlaces__link {
+    width: 378px;
+    text-align: center;
+    padding: 21.5px 0;
+    border-radius: 16px;
+    font-family: var(--fuente-montserrat);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--color-secundario);
+    border: 2px solid var(--color-terciario);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.presentacion__enlaces__link:hover {
+    background-color: var(--color-cafe);
+}
+
+.presentacion__imagen {
+    width: 30%;
+}
+
+.iframe {
+    display: flex;
+    justify-content: center;  /* Centrado horizontal */
+    align-items: center; /* Centrado vertical */
+    padding: 25px;
+}
+
+/* Estilos generales de galería */
+.galeria {
+    width: 50%;
+    height: 350px; /* Altura fija para el carrusel */
+    margin: 50px auto; /* 50px arriba y abajo, y centrado horizontalmente */
+    overflow: hidden; /* Ocultar las imágenes fuera del contenedor */
+    /*border: 2px solid #ccc; /* Opcional: para visualizar los límites del carrusel */
+    position: relative; /* Asegura que el contenido del carrusel se ajuste a este contenedor */
+}
+  
+/* Carrusel: contiene todas las imágenes */
+.carrusel {
+    display: flex;
+    position: relative; /* Necesario para la posición absoluta de las imágenes */
+    width: 100%; /* Asegura que el carrusel se extienda completamente */
+    height: 100%;
+}
+
+/* Estilo para cada imagen */
+.imagen {
+    flex: 0 0 100%;   /* Cada imagen ocupa el 100% del carrusel */
+    position: absolute; /* Esto es lo que permite que las imágenes se superpongan */
+    top: 0;
+    left: 10%;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Inicialmente ocultas */
+    transition: opacity 1s ease-in-out; /* Transición suave de opacidad */
+}
+
+/* Hacer que las imágenes mantengan su proporción dentro del carrusel */
+.imagen img {
+    width: 80%;
+    height: 100%; /* Las imágenes llenan toda la altura del contenedor */
+    object-fit: cover; /* Asegura que la imagen cubra completamente el área del contenedor */
+}
+
+/* Estilos para la descripción */
+.descripcion {
+    position: absolute;
+    bottom: 15px; /* Distancia desde la parte inferior */
+    width: 80%;
+    color: white; /* Color del texto */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente para mejorar la visibilidad */
+    padding: 10px;
+    font-size: 1rem;
+    font-family: var(--fuente-montserrat);
+    z-index: 2; /* Asegura que la descripción esté por encima de la imagen */
+}
+
+/* Animación para mostrar las imágenes una por una */
+@keyframes mostrarImagenes {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    33% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Aplicamos la animación a cada imagen */
+.imagen:nth-child(1) {
+    animation: mostrarImagenes 9s infinite;
+}
+
+.imagen:nth-child(2) {
+    animation: mostrarImagenes 9s infinite 3s; /* Empieza después de 3 segundos */
+}
+
+.imagen:nth-child(3) {
+    animation: mostrarImagenes 9s infinite 6s; /* Empieza después de 6 segundos */
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .carrusel {
+        animation: deslizar 12s infinite; /* Cambia la duración de la animación para pantallas más pequeñas */
+    }
+    .galeria {
+        width: 85%;
+    }
+}
+
+.footer {
+    background-color: var(--color-terciario);
+    padding: 24px;
+    color: var(--color-primario);
+    text-align: center;
+    font-family: var(--fuente-montserrat);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+@media (max-width: 1000px) {
+    .presentacion{
+        flex-direction: column-reverse;
+        padding: 5%;
+    }
+    .header{
+        padding: 10%;
+    }
+    .header__menu{
+        justify-content: center;
+    }
+    .presentacion__contenido{
+        width: auto;
+    }
+}
